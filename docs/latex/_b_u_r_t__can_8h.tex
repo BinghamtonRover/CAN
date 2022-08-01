@@ -1,0 +1,91 @@
+\hypertarget{_b_u_r_t__can_8h}{}\doxysection{src/\+BURT\+\_\+can.h File Reference}
+\label{_b_u_r_t__can_8h}\index{src/BURT\_can.h@{src/BURT\_can.h}}
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include $<$Flex\+CAN\+\_\+\+T4.\+h$>$}\newline
+{\ttfamily \#include $<$functional$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_burt_can}{Burt\+Can}}
+\begin{DoxyCompactList}\small\item\em A service to send and receive messages via the CAN bus protocol. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_b_u_r_t__can_8h_a1e833201796f7bee40344d27e3fb5c49_a1e833201796f7bee40344d27e3fb5c49}{CAN\+\_\+\+BAUD\+\_\+\+RATE}}~500000
+\item 
+\#define \mbox{\hyperlink{_b_u_r_t__can_8h_af0113b8a0d65aab384607436aa155838_af0113b8a0d65aab384607436aa155838}{DATA\+\_\+\+LENGTH}}~8
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef Flex\+CAN\+\_\+\+T4$<$ CAN2, RX\+\_\+\+SIZE\+\_\+256, TX\+\_\+\+SIZE\+\_\+16 $>$ \mbox{\hyperlink{_b_u_r_t__can_8h_ad573616343e9599d46e53cbd0495a674_ad573616343e9599d46e53cbd0495a674}{Can}}
+\begin{DoxyCompactList}\small\item\em The CAN service. \end{DoxyCompactList}\item 
+typedef CAN\+\_\+message\+\_\+t \mbox{\hyperlink{_b_u_r_t__can_8h_a85e783316bbdcbbb61711e2822333223_a85e783316bbdcbbb61711e2822333223}{Can\+Message}}
+\item 
+typedef void($\ast$ \mbox{\hyperlink{_b_u_r_t__can_8h_a5062746f455c9d56d0c1f684bba82ef3_a5062746f455c9d56d0c1f684bba82ef3}{Can\+Handler}}) (const \mbox{\hyperlink{_b_u_r_t__can_8h_a85e783316bbdcbbb61711e2822333223_a85e783316bbdcbbb61711e2822333223}{Can\+Message}} \&msg)
+\begin{DoxyCompactList}\small\item\em A handler function that accepts a \mbox{\hyperlink{_b_u_r_t__can_8h_a85e783316bbdcbbb61711e2822333223_a85e783316bbdcbbb61711e2822333223}{Can\+Message}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{_b_u_r_t__can_8h_a1e833201796f7bee40344d27e3fb5c49_a1e833201796f7bee40344d27e3fb5c49}\label{_b_u_r_t__can_8h_a1e833201796f7bee40344d27e3fb5c49_a1e833201796f7bee40344d27e3fb5c49}} 
+\index{BURT\_can.h@{BURT\_can.h}!CAN\_BAUD\_RATE@{CAN\_BAUD\_RATE}}
+\index{CAN\_BAUD\_RATE@{CAN\_BAUD\_RATE}!BURT\_can.h@{BURT\_can.h}}
+\doxysubsubsection{\texorpdfstring{CAN\_BAUD\_RATE}{CAN\_BAUD\_RATE}}
+{\footnotesize\ttfamily \#define CAN\+\_\+\+BAUD\+\_\+\+RATE~500000}
+
+
+
+Definition at line \mbox{\hyperlink{_b_u_r_t__can_8h_source_l00010}{10}} of file \mbox{\hyperlink{_b_u_r_t__can_8h_source}{BURT\+\_\+can.\+h}}.
+
+\mbox{\Hypertarget{_b_u_r_t__can_8h_af0113b8a0d65aab384607436aa155838_af0113b8a0d65aab384607436aa155838}\label{_b_u_r_t__can_8h_af0113b8a0d65aab384607436aa155838_af0113b8a0d65aab384607436aa155838}} 
+\index{BURT\_can.h@{BURT\_can.h}!DATA\_LENGTH@{DATA\_LENGTH}}
+\index{DATA\_LENGTH@{DATA\_LENGTH}!BURT\_can.h@{BURT\_can.h}}
+\doxysubsubsection{\texorpdfstring{DATA\_LENGTH}{DATA\_LENGTH}}
+{\footnotesize\ttfamily \#define DATA\+\_\+\+LENGTH~8}
+
+
+
+Definition at line \mbox{\hyperlink{_b_u_r_t__can_8h_source_l00011}{11}} of file \mbox{\hyperlink{_b_u_r_t__can_8h_source}{BURT\+\_\+can.\+h}}.
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{_b_u_r_t__can_8h_ad573616343e9599d46e53cbd0495a674_ad573616343e9599d46e53cbd0495a674}\label{_b_u_r_t__can_8h_ad573616343e9599d46e53cbd0495a674_ad573616343e9599d46e53cbd0495a674}} 
+\index{BURT\_can.h@{BURT\_can.h}!Can@{Can}}
+\index{Can@{Can}!BURT\_can.h@{BURT\_can.h}}
+\doxysubsubsection{\texorpdfstring{Can}{Can}}
+{\footnotesize\ttfamily typedef Flex\+CAN\+\_\+\+T4$<$CAN2, RX\+\_\+\+SIZE\+\_\+256, TX\+\_\+\+SIZE\+\_\+16$>$ \mbox{\hyperlink{_b_u_r_t__can_8h_ad573616343e9599d46e53cbd0495a674_ad573616343e9599d46e53cbd0495a674}{Can}}}
+
+
+
+The CAN service. 
+
+For internal use only. Uses the {\ttfamily Flex\+CAN\+\_\+\+T4} library. 
+
+Definition at line \mbox{\hyperlink{_b_u_r_t__can_8h_source_l00016}{16}} of file \mbox{\hyperlink{_b_u_r_t__can_8h_source}{BURT\+\_\+can.\+h}}.
+
+\mbox{\Hypertarget{_b_u_r_t__can_8h_a5062746f455c9d56d0c1f684bba82ef3_a5062746f455c9d56d0c1f684bba82ef3}\label{_b_u_r_t__can_8h_a5062746f455c9d56d0c1f684bba82ef3_a5062746f455c9d56d0c1f684bba82ef3}} 
+\index{BURT\_can.h@{BURT\_can.h}!CanHandler@{CanHandler}}
+\index{CanHandler@{CanHandler}!BURT\_can.h@{BURT\_can.h}}
+\doxysubsubsection{\texorpdfstring{CanHandler}{CanHandler}}
+{\footnotesize\ttfamily typedef void($\ast$ Can\+Handler) (const \mbox{\hyperlink{_b_u_r_t__can_8h_a85e783316bbdcbbb61711e2822333223_a85e783316bbdcbbb61711e2822333223}{Can\+Message}} \&msg)}
+
+
+
+A handler function that accepts a \mbox{\hyperlink{_b_u_r_t__can_8h_a85e783316bbdcbbb61711e2822333223_a85e783316bbdcbbb61711e2822333223}{Can\+Message}}. 
+
+Use these with \mbox{\hyperlink{class_burt_can_a0e87852581ef690086342a48a291d569_a0e87852581ef690086342a48a291d569}{Burt\+Can\+::register\+Handler}} to listen for messages. ~\newline
+ 
+
+Definition at line \mbox{\hyperlink{_b_u_r_t__can_8h_source_l00026}{26}} of file \mbox{\hyperlink{_b_u_r_t__can_8h_source}{BURT\+\_\+can.\+h}}.
+
+\mbox{\Hypertarget{_b_u_r_t__can_8h_a85e783316bbdcbbb61711e2822333223_a85e783316bbdcbbb61711e2822333223}\label{_b_u_r_t__can_8h_a85e783316bbdcbbb61711e2822333223_a85e783316bbdcbbb61711e2822333223}} 
+\index{BURT\_can.h@{BURT\_can.h}!CanMessage@{CanMessage}}
+\index{CanMessage@{CanMessage}!BURT\_can.h@{BURT\_can.h}}
+\doxysubsubsection{\texorpdfstring{CanMessage}{CanMessage}}
+{\footnotesize\ttfamily typedef CAN\+\_\+message\+\_\+t \mbox{\hyperlink{_b_u_r_t__can_8h_a85e783316bbdcbbb61711e2822333223_a85e783316bbdcbbb61711e2822333223}{Can\+Message}}}
+
+
+
+Definition at line \mbox{\hyperlink{_b_u_r_t__can_8h_source_l00021}{21}} of file \mbox{\hyperlink{_b_u_r_t__can_8h_source}{BURT\+\_\+can.\+h}}.
+

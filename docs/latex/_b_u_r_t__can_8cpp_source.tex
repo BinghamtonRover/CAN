@@ -1,0 +1,45 @@
+\hypertarget{_b_u_r_t__can_8cpp_source}{}\doxysection{BURT\+\_\+can.\+cpp}
+\label{_b_u_r_t__can_8cpp_source}\index{src/BURT\_can.cpp@{src/BURT\_can.cpp}}
+\mbox{\hyperlink{_b_u_r_t__can_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_b_u_r_t__can_8cpp_source_l00001}00001 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_b_u_r_t__can_8h}{BURT\_can.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_b_u_r_t__can_8cpp_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{_b_u_r_t__can_8cpp_source_l00003}00003 \textcolor{keywordtype}{int} \mbox{\hyperlink{class_burt_can_a0a90577332245518856f62d7aabb1790_a0a90577332245518856f62d7aabb1790}{BurtCan::mailbox}} = MB0;}
+\DoxyCodeLine{\Hypertarget{_b_u_r_t__can_8cpp_source_l00004}00004 \mbox{\hyperlink{_b_u_r_t__can_8h_ad573616343e9599d46e53cbd0495a674_ad573616343e9599d46e53cbd0495a674}{Can}} \mbox{\hyperlink{class_burt_can_a3861945afb212de0ec54f490813dbb9b_a3861945afb212de0ec54f490813dbb9b}{BurtCan::can}};}
+\DoxyCodeLine{\Hypertarget{_b_u_r_t__can_8cpp_source_l00005}00005 }
+\DoxyCodeLine{\Hypertarget{_b_u_r_t__can_8cpp_source_l00006}\mbox{\hyperlink{class_burt_can_a4a2407abb36ee4e5d23696ff1c868cc4_a4a2407abb36ee4e5d23696ff1c868cc4}{00006}} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_burt_can_a4a2407abb36ee4e5d23696ff1c868cc4_a4a2407abb36ee4e5d23696ff1c868cc4}{BurtCan::setup}}() \{}
+\DoxyCodeLine{\Hypertarget{_b_u_r_t__can_8cpp_source_l00007}00007   \textcolor{comment}{// Sets the baud rate and default message policy. }}
+\DoxyCodeLine{\Hypertarget{_b_u_r_t__can_8cpp_source_l00008}00008   \mbox{\hyperlink{class_burt_can_a3861945afb212de0ec54f490813dbb9b_a3861945afb212de0ec54f490813dbb9b}{can}}.begin();}
+\DoxyCodeLine{\Hypertarget{_b_u_r_t__can_8cpp_source_l00009}00009   \mbox{\hyperlink{class_burt_can_a3861945afb212de0ec54f490813dbb9b_a3861945afb212de0ec54f490813dbb9b}{can}}.setBaudRate(\mbox{\hyperlink{_b_u_r_t__can_8h_a1e833201796f7bee40344d27e3fb5c49_a1e833201796f7bee40344d27e3fb5c49}{CAN\_BAUD\_RATE}});}
+\DoxyCodeLine{\Hypertarget{_b_u_r_t__can_8cpp_source_l00010}00010   \mbox{\hyperlink{class_burt_can_a3861945afb212de0ec54f490813dbb9b_a3861945afb212de0ec54f490813dbb9b}{can}}.enableMBInterrupts();}
+\DoxyCodeLine{\Hypertarget{_b_u_r_t__can_8cpp_source_l00011}00011   \mbox{\hyperlink{class_burt_can_a3861945afb212de0ec54f490813dbb9b_a3861945afb212de0ec54f490813dbb9b}{can}}.setMBFilter(REJECT\_ALL);}
+\DoxyCodeLine{\Hypertarget{_b_u_r_t__can_8cpp_source_l00012}00012 \}}
+\DoxyCodeLine{\Hypertarget{_b_u_r_t__can_8cpp_source_l00013}00013 }
+\DoxyCodeLine{\Hypertarget{_b_u_r_t__can_8cpp_source_l00014}\mbox{\hyperlink{class_burt_can_a238e2df76151f9b512bb2211ee25d620_a238e2df76151f9b512bb2211ee25d620}{00014}} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_burt_can_a238e2df76151f9b512bb2211ee25d620_a238e2df76151f9b512bb2211ee25d620}{BurtCan::send}}(uint32\_t \textcolor{keywordtype}{id}, uint8\_t data[\mbox{\hyperlink{_b_u_r_t__can_8h_af0113b8a0d65aab384607436aa155838_af0113b8a0d65aab384607436aa155838}{DATA\_LENGTH}}]) \{}
+\DoxyCodeLine{\Hypertarget{_b_u_r_t__can_8cpp_source_l00015}00015   \textcolor{comment}{// Creates a new message and prefills it with [id] and [data].}}
+\DoxyCodeLine{\Hypertarget{_b_u_r_t__can_8cpp_source_l00016}00016   \mbox{\hyperlink{_b_u_r_t__can_8h_a85e783316bbdcbbb61711e2822333223_a85e783316bbdcbbb61711e2822333223}{CanMessage}} message;}
+\DoxyCodeLine{\Hypertarget{_b_u_r_t__can_8cpp_source_l00017}00017   message.id = id;}
+\DoxyCodeLine{\Hypertarget{_b_u_r_t__can_8cpp_source_l00018}00018   Serial.println(\textcolor{stringliteral}{"{}Sending message..."{}});}
+\DoxyCodeLine{\Hypertarget{_b_u_r_t__can_8cpp_source_l00019}00019   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} index = 0; index < \mbox{\hyperlink{_b_u_r_t__can_8h_af0113b8a0d65aab384607436aa155838_af0113b8a0d65aab384607436aa155838}{DATA\_LENGTH}}; index++) \{}
+\DoxyCodeLine{\Hypertarget{_b_u_r_t__can_8cpp_source_l00020}00020     Serial.print(\textcolor{stringliteral}{"{}  Current byte: "{}});}
+\DoxyCodeLine{\Hypertarget{_b_u_r_t__can_8cpp_source_l00021}00021     Serial.println(data[index]);}
+\DoxyCodeLine{\Hypertarget{_b_u_r_t__can_8cpp_source_l00022}00022     message.buf[index] = data[index];}
+\DoxyCodeLine{\Hypertarget{_b_u_r_t__can_8cpp_source_l00023}00023   \}}
+\DoxyCodeLine{\Hypertarget{_b_u_r_t__can_8cpp_source_l00024}00024   \mbox{\hyperlink{class_burt_can_a3861945afb212de0ec54f490813dbb9b_a3861945afb212de0ec54f490813dbb9b}{can}}.write(message);}
+\DoxyCodeLine{\Hypertarget{_b_u_r_t__can_8cpp_source_l00025}00025   Serial.println(\textcolor{stringliteral}{"{}Message sent."{}});}
+\DoxyCodeLine{\Hypertarget{_b_u_r_t__can_8cpp_source_l00026}00026 \}}
+\DoxyCodeLine{\Hypertarget{_b_u_r_t__can_8cpp_source_l00027}00027 }
+\DoxyCodeLine{\Hypertarget{_b_u_r_t__can_8cpp_source_l00028}\mbox{\hyperlink{class_burt_can_a0e87852581ef690086342a48a291d569_a0e87852581ef690086342a48a291d569}{00028}} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_burt_can_a0e87852581ef690086342a48a291d569_a0e87852581ef690086342a48a291d569}{BurtCan::registerHandler}}(uint32\_t \textcolor{keywordtype}{id}, \textcolor{keyword}{const} \mbox{\hyperlink{_b_u_r_t__can_8h_a5062746f455c9d56d0c1f684bba82ef3_a5062746f455c9d56d0c1f684bba82ef3}{CanHandler}} handler) \{}
+\DoxyCodeLine{\Hypertarget{_b_u_r_t__can_8cpp_source_l00029}00029   \textcolor{comment}{// Creates a new mailbox set to handle [id] with [handler]. }}
+\DoxyCodeLine{\Hypertarget{_b_u_r_t__can_8cpp_source_l00030}00030   FLEXCAN\_MAILBOX mb = FLEXCAN\_MAILBOX(\mbox{\hyperlink{class_burt_can_a0a90577332245518856f62d7aabb1790_a0a90577332245518856f62d7aabb1790}{mailbox}});}
+\DoxyCodeLine{\Hypertarget{_b_u_r_t__can_8cpp_source_l00031}00031   \mbox{\hyperlink{class_burt_can_a3861945afb212de0ec54f490813dbb9b_a3861945afb212de0ec54f490813dbb9b}{can}}.setMBFilter(mb, \textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{_b_u_r_t__can_8cpp_source_l00032}00032   \mbox{\hyperlink{class_burt_can_a3861945afb212de0ec54f490813dbb9b_a3861945afb212de0ec54f490813dbb9b}{can}}.onReceive(mb, handler);}
+\DoxyCodeLine{\Hypertarget{_b_u_r_t__can_8cpp_source_l00033}00033   \mbox{\hyperlink{class_burt_can_a0a90577332245518856f62d7aabb1790_a0a90577332245518856f62d7aabb1790}{mailbox}} += 1;}
+\DoxyCodeLine{\Hypertarget{_b_u_r_t__can_8cpp_source_l00034}00034 \}}
+\DoxyCodeLine{\Hypertarget{_b_u_r_t__can_8cpp_source_l00035}00035 }
+\DoxyCodeLine{\Hypertarget{_b_u_r_t__can_8cpp_source_l00036}\mbox{\hyperlink{class_burt_can_ab549af8dc00d6f7c4f02af0055628fd1_ab549af8dc00d6f7c4f02af0055628fd1}{00036}} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_burt_can_ab549af8dc00d6f7c4f02af0055628fd1_ab549af8dc00d6f7c4f02af0055628fd1}{BurtCan::update}}() \{ }
+\DoxyCodeLine{\Hypertarget{_b_u_r_t__can_8cpp_source_l00037}00037   \mbox{\hyperlink{class_burt_can_a3861945afb212de0ec54f490813dbb9b_a3861945afb212de0ec54f490813dbb9b}{can}}.events();}
+\DoxyCodeLine{\Hypertarget{_b_u_r_t__can_8cpp_source_l00038}00038 \}}
+\DoxyCodeLine{\Hypertarget{_b_u_r_t__can_8cpp_source_l00039}00039 }
+
+\end{DoxyCode}
