@@ -13,16 +13,16 @@ void BurtSerial::update() {
 	uint8_t input[length];
 	int receivedLength = Serial.readBytes((char*) input, length);
 
-	if (!isConnected) {
-		tryConnect(input, length);
-	} else if (receivedLength == 4 && (input[0] == 0 && input[1] == 0 && input[2] == 0 && input[3] == 0)) {
-		// This is our special "reset" code. Respond with 1111
-		uint8_t response[4] = {0x01, 0x01, 0x01, 0x01};
-		Serial.write(response, 4);
-		isConnected = false;
-	} else {
-		onMessage(input, length);
-	}
+	// if (!isConnected) {
+	// 	tryConnect(input, length);
+	// } else if (receivedLength == 4 && (input[0] == 0 && input[1] == 0 && input[2] == 0 && input[3] == 0)) {
+	// 	// This is our special "reset" code. Respond with 1111
+	// 	uint8_t response[4] = {0x01, 0x01, 0x01, 0x01};
+	// 	Serial.write(response, 4);
+	// 	isConnected = false;
+	// } else {
+	onMessage(input, length);
+	// }
 }
 
 void BurtSerial::tryConnect(uint8_t* input, int length) {
@@ -55,11 +55,12 @@ void BurtSerial::tryConnect(uint8_t* input, int length) {
  * @return Returns `true` if the entire message is sent successfully, `false` otherwise.
  */
 bool BurtSerial::send(const pb_msgdesc_t* fields, const void* message, int length) {
-	if (!isConnected) return false;
+	/// if (!isConnected) return false;
 
-	uint8_t buffer[length];
+	uint8_t* buffer = new uint8_t[length];
 	int encodedLength = BurtProto::encode(buffer, fields, message);
 	
 	int sentLength = Serial.write(buffer, encodedLength);
+	delete[] buffer;
 	return encodedLength == sentLength;
 }
