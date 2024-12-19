@@ -1,20 +1,23 @@
 #include "BURT_serial.h"
 #include "BURT_proto.h"
+#include "version.pb.h"
 
-BurtSerial::BurtSerial(Device device, ProtoHandler onMessage, const pb_msgdesc_t* descriptor, int length) :
+BurtSerial::BurtSerial(Device device, ProtoHandler onMessage, const pb_msgdesc_t* descriptor, int length, Version version, bool receipt = false) :
 	device(device),
 	onMessage(onMessage),
 	descriptor(descriptor),
-	length(length)
+	length(length),
+	version(version),
+	receipt(receipt),
 	{ }
 
-bool isResetCode(uint8_t* buffer, int length) {
-	return length >= 4
-		&& buffer[0] == 0
-		&& buffer[1] == 0
-		&& buffer[2] == 0
-		&& buffer[3] == 0;
-}
+// bool isResetCode(uint8_t* buffer, int length) {
+// 	return length >= 4
+// 		&& buffer[0] == 0
+// 		&& buffer[1] == 0
+// 		&& buffer[2] == 0
+// 		&& buffer[3] == 0;
+// }
 
 void BurtSerial::update() {
 	int length = Serial.available();
@@ -22,18 +25,49 @@ void BurtSerial::update() {
 	uint8_t input[length];
 	int receivedLength = Serial.readBytes((char*) input, length);
 
-	if (!isConnected) {
+	if (!isConnected){
 		tryConnect(input, length);
-	} else if (isResetCode(input, receivedLength)) {
-		// This is our special "reset" code. Respond with 1111
-		uint8_t response[4] = {0x01, 0x01, 0x01, 0x01};
-		Serial.write(response, 4);
-		isConnected = false;
-	} else {
-		onMessage(input, length);
 	}
+
+	// NO CHECK 
+	WrappedMessage msg = BurtProto::decode<WrappedMessage>(input, length, WrappedMessage_fields);
+
+	if(msg.version.major != this->version.major)
+	{
+	
+		// Send back invalid version message?
+	}
+
+	switch(msg.type)
+	{
+		case MessageType::HEARTBEAT:
+			// check sender validity?
+			break;
+		case MessageType::DISCONNECT:
+			uint8_t response[4] = {0x01, 0x01, 0x01, 0x01};
+			//Serial.write(response, 4);
+			BurtSerial::send(response)
+			isConnected = false;
+			break;
+		case MessageType::COMMAND:
+			// what special thing we do here other than onMessage(input,length) lil bro
+			// break;
+		default:
+			onMessage(input, length);
+		
+	}
+
+	// } else if (isResetCode(input, receivedLength)) {
+	// 	// This is our special "reset" code. Respond with 1111
+	// 	uint8_t response[4] = {0x01, 0x01, 0x01, 0x01};
+	// 	Serial.write(response, 4);
+	// 	isConnected = false;
+	// } else {
+	// 	onMessage(input, length);
+	// }
 }
 
+// CHANGE THIS
 void BurtSerial::tryConnect(uint8_t* input, int length) {
 	// Parse as an incoming Connect request
 	Connect connect = BurtProto::decode<Connect>(input, length, Connect_fields);
@@ -63,6 +97,11 @@ void BurtSerial::tryConnect(uint8_t* input, int length) {
  * @return Returns `true` if the entire message is sent successfully, `false` otherwise.
  */
 bool BurtSerial::send(const void* message) {
+
+	// Wrap it to wrapped message
+	BurtProto::encode()
+
+	// 
 	if (!isConnected) return false;
 
 	uint8_t* buffer = new uint8_t[length];
@@ -71,4 +110,9 @@ bool BurtSerial::send(const void* message) {
 	int sentLength = Serial.write(buffer, encodedLength);
 	delete[] buffer;
 	return encodedLength == sentLength;
+}
+
+bool BurtSerial:sendLogMessage(BurtLog message){
+	
+	return true;
 }
